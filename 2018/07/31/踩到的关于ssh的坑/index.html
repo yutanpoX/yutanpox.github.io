@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Use Guard Clauses | 妙妙屋</title>
+  <title>踩到的关于SSH的坑 | 妙妙屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Replace Nested Conditional with Guard ClausesA method has conditional behavior that does not make clear what the normal path of execution is Use Guard Clauses for all the special cases123456789101112">
+  <meta name="description" content="#报错  在使用userB对项目进行push时，得到报错ERROR: Permission to XXX.git denied to userA. ssh到腾讯云时，得到报错Permission denied (publickey,gssapi-keyex,gssapi-with-mic).两个问题的本质相同，故放在一起总结。  ###问题一  打开设置中的Keychain Access（钥匙串）">
+<meta name="keywords" content="ssh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Use Guard Clauses">
-<meta property="og:url" content="http://yutanpo72.github.io/2017/03/31/Guard-Clauses/index.html">
+<meta property="og:title" content="踩到的关于SSH的坑">
+<meta property="og:url" content="http://yutanpo72.github.io/2018/07/31/踩到的关于ssh的坑/index.html">
 <meta property="og:site_name" content="妙妙屋">
-<meta property="og:description" content="Replace Nested Conditional with Guard ClausesA method has conditional behavior that does not make clear what the normal path of execution is Use Guard Clauses for all the special cases123456789101112">
+<meta property="og:description" content="#报错  在使用userB对项目进行push时，得到报错ERROR: Permission to XXX.git denied to userA. ssh到腾讯云时，得到报错Permission denied (publickey,gssapi-keyex,gssapi-with-mic).两个问题的本质相同，故放在一起总结。  ###问题一  打开设置中的Keychain Access（钥匙串）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-26T16:14:39.867Z">
+<meta property="og:updated_time" content="2018-07-31T14:25:07.862Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Use Guard Clauses">
-<meta name="twitter:description" content="Replace Nested Conditional with Guard ClausesA method has conditional behavior that does not make clear what the normal path of execution is Use Guard Clauses for all the special cases123456789101112">
+<meta name="twitter:title" content="踩到的关于SSH的坑">
+<meta name="twitter:description" content="#报错  在使用userB对项目进行push时，得到报错ERROR: Permission to XXX.git denied to userA. ssh到腾讯云时，得到报错Permission denied (publickey,gssapi-keyex,gssapi-with-mic).两个问题的本质相同，故放在一起总结。  ###问题一  打开设置中的Keychain Access（钥匙串）">
   
     <link rel="alternate" href="/atom.xml" title="妙妙屋" type="application/atom+xml">
   
@@ -68,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Guard-Clauses" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-踩到的关于ssh的坑" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/31/Guard-Clauses/" class="article-date">
-  <time datetime="2017-03-31T14:55:21.000Z" itemprop="datePublished">2017-03-31</time>
+    <a href="/2018/07/31/踩到的关于ssh的坑/" class="article-date">
+  <time datetime="2018-07-31T13:16:22.000Z" itemprop="datePublished">2018-07-31</time>
 </a>
     
   </div>
@@ -82,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Use Guard Clauses
+      踩到的关于SSH的坑
     </h1>
   
 
@@ -90,30 +91,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Replace-Nested-Conditional-with-Guard-Clauses"><a href="#Replace-Nested-Conditional-with-Guard-Clauses" class="headerlink" title="Replace Nested Conditional with Guard Clauses"></a>Replace Nested Conditional with Guard Clauses</h1><p>A method has conditional behavior that does not make clear what the normal path of execution is</p>
-<h3 id="Use-Guard-Clauses-for-all-the-special-cases"><a href="#Use-Guard-Clauses-for-all-the-special-cases" class="headerlink" title="Use Guard Clauses for all the special cases"></a>Use Guard Clauses for all the special cases</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> double getPayAmount() &#123;</span><br><span class="line">  double result;</span><br><span class="line">  if (_isDead) result = deadAmount();</span><br><span class="line">  else &#123;</span><br><span class="line">    if (_isSeparated) result = separatedAmount();</span><br><span class="line">    else &#123;</span><br><span class="line">      if (_isRetired) result = retiredAmount();</span><br><span class="line">      else result = normalPayAmount();</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">double getPayAmount() &#123;</span><br><span class="line">  if (_isDead) return deadAmount();</span><br><span class="line">  if (_isSeparated) return separatedAmount();</span><br><span class="line">  if (_isRetired) return retiredAmount();</span><br><span class="line">  return normalPayAmount();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p>#报错</p>
+<ul>
+<li>在使用userB对项目进行push时，得到报错ERROR: Permission to XXX.git denied to userA.</li>
+<li>ssh到腾讯云时，得到报错Permission denied (publickey,gssapi-keyex,gssapi-with-mic).<br>两个问题的本质相同，故放在一起总结。</li>
+</ul>
+<p>###问题一</p>
+<ol>
+<li>打开设置中的Keychain Access（钥匙串），搜索<code>github.com</code>并删除userA有关信息。</li>
+<li>使用<code>ssh-keygen -t rsa -C &quot;xxxx&quot; -f ~/.ssh/xxxx_rsa</code>创建密钥后，将公钥上传至github。</li>
+<li>使用<code>ssh -T git@github.com</code>测试是否成功，得到<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>: Permission denied (publickey)。</li>
+<li>查询后基本都是说未将公钥上传至github，查询到官方文档，提到了使用<code>ssh -vT git@github.com</code>进行追踪，得到报错<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_rsa</span><br><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_dsa</span><br><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_ecdsa</span><br><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_ed25519</span><br><span class="line">debug1: No more authentication methods to try.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>原因是使用了自定义名称，需要ssh-add xxxx_rsa。<br>再试一次<code>ssh -vT git@github.com</code>，成功。</p>
+<p>###问题二<br>问题一，缺少ssh-add。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yutanpo72.github.io/2017/03/31/Guard-Clauses/" data-id="cjk9som5r0000dnj549h751oa" class="article-share-link">Share</a>
+      <a data-url="http://yutanpo72.github.io/2018/07/31/踩到的关于ssh的坑/" data-id="cjk9som5v0001dnj50p2d410v" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2018/07/31/踩到的关于ssh的坑/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          踩到的关于SSH的坑
-        
-      </div>
-    </a>
   
+    <a href="/2017/03/31/Guard-Clauses/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Use Guard Clauses</div>
+    </a>
   
 </nav>
 

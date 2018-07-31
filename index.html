@@ -66,6 +66,59 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-踩到的关于ssh的坑" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/31/踩到的关于ssh的坑/" class="article-date">
+  <time datetime="2018-07-31T13:16:22.000Z" itemprop="datePublished">2018-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/31/踩到的关于ssh的坑/">踩到的关于SSH的坑</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#报错</p>
+<ul>
+<li>在使用userB对项目进行push时，得到报错ERROR: Permission to XXX.git denied to userA.</li>
+<li>ssh到腾讯云时，得到报错Permission denied (publickey,gssapi-keyex,gssapi-with-mic).<br>两个问题的本质相同，故放在一起总结。</li>
+</ul>
+<p>###问题一</p>
+<ol>
+<li>打开设置中的Keychain Access（钥匙串），搜索<code>github.com</code>并删除userA有关信息。</li>
+<li>使用<code>ssh-keygen -t rsa -C &quot;xxxx&quot; -f ~/.ssh/xxxx_rsa</code>创建密钥后，将公钥上传至github。</li>
+<li>使用<code>ssh -T git@github.com</code>测试是否成功，得到<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>: Permission denied (publickey)。</li>
+<li>查询后基本都是说未将公钥上传至github，查询到官方文档，提到了使用<code>ssh -vT git@github.com</code>进行追踪，得到报错<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_rsa</span><br><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_dsa</span><br><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_ecdsa</span><br><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_ed25519</span><br><span class="line">debug1: No more authentication methods to try.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>原因是使用了自定义名称，需要ssh-add xxxx_rsa。<br>再试一次<code>ssh -vT git@github.com</code>，成功。</p>
+<p>###问题二<br>问题一，缺少ssh-add。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yutanpo72.github.io/2018/07/31/踩到的关于ssh的坑/" data-id="cjk9som5v0001dnj50p2d410v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Guard-Clauses" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/03/31/Guard-Clauses/" class="article-date">
@@ -94,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yutanpo72.github.io/2017/03/31/Guard-Clauses/" data-id="cjk5nygxd00005mj5o845bqvy" class="article-share-link">Share</a>
+      <a data-url="http://yutanpo72.github.io/2017/03/31/Guard-Clauses/" data-id="cjk9som5r0000dnj549h751oa" class="article-share-link">Share</a>
       
       
     </footer>
@@ -113,15 +166,29 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ssh/" style="font-size: 10px;">ssh</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li></ul>
     </div>
   </div>
 
@@ -132,6 +199,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/31/踩到的关于ssh的坑/">踩到的关于SSH的坑</a>
+          </li>
         
           <li>
             <a href="/2017/03/31/Guard-Clauses/">Use Guard Clauses</a>
