@@ -390,9 +390,8 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>###报错<br>使用命令进行逻辑日志空间调整时<br><code>$ onspaces -c -d logdbs -p /informix/dbs/logdbs -o 4 -s 32768000
-shared memory not initialized for xxxx</code></p>
-<p>###解决思路<br>搜索到的解决方案一般是考虑informixserver配置错误，故检查环境变量是否正确，并检查sqlhost及/etc/hosts.<br>一般来说这些配错了，在oninit -ivy进行数据库初始化时，就会报错，所以我将这些都检查过后，发现配置的并没有问题。<br>同时检查onmode -m，数据库状态正常。<br>将安装步骤重新检查后，发现是最开始设置挂载文件系统时，目录属主配置错误。</p>
+        <h3 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h3><p>使用命令进行逻辑日志空间调整时<br>$ onspaces -c -d logdbs -p /informix/dbs/logdbs -o 4 -s 32768000<br>shared memory not initialized for xxxx</p>
+<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>搜索到的解决方案一般是考虑informixserver配置错误，故检查环境变量是否正确，并检查sqlhost及/etc/hosts.<br>一般来说这些配错了，在oninit -ivy进行数据库初始化时，就会报错，所以我将这些都检查过后，发现配置的并没有问题。<br>同时检查onmode -m，数据库状态正常。<br>将安装步骤重新检查后，发现是最开始设置挂载文件系统时，目录属主配置错误。</p>
 
     </article>
     <!-- license  -->
@@ -522,7 +521,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#报错"><span class="toc-number">1.</span> <span class="toc-text">报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决思路"><span class="toc-number">2.</span> <span class="toc-text">解决思路</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

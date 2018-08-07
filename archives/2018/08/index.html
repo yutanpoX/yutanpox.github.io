@@ -344,9 +344,8 @@
                 <span>informix安装踩坑</span>
         </a>
         <div class="abstract-content">
-            ###报错使用命令进行逻辑日志空间调整时$ onspaces -c -d logdbs -p /informix/dbs/logdbs -o 4 -s 32768000
-shared memory not initialized for xxxx
-###解决思路搜索到的解决方案一般是考虑informixserver配置错误，故检查环境变量是否正确，并检查sqlhost及/etc/hosts.一般来说这些配错了，在oninit -ivy进行数据库初始化时，就会报错，所以我将这些都检查过后，发现配置的并没有问题。同时检查onmode -m，数据库状态正常。将安装步骤重新检查后，发现是最...
+            报错使用命令进行逻辑日志空间调整时$ onspaces -c -d logdbs -p /informix/dbs/logdbs -o 4 -s 32768000shared memory not initialized for xxxx
+解决思路搜索到的解决方案一般是考虑informixserver配置错误，故检查环境变量是否正确，并检查sqlhost及/etc/hosts.一般来说这些配错了，在oninit -ivy进行数据库初始化时，就会报错，所以我将这些都检查过后，发现配置的并没有问题。同时检查onmode -m，数据库状态正常。将安装步骤重新检查后，发现是最开始设置挂载文...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->

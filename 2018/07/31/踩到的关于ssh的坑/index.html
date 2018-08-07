@@ -396,13 +396,11 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>#报错</p>
-<ul>
+        <h1 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h1><ul>
 <li>在使用userB对项目进行push时，得到报错ERROR: Permission to XXX.git denied to userA.</li>
 <li>ssh到腾讯云时，得到报错Permission denied (publickey,gssapi-keyex,gssapi-with-mic).<br>两个问题的本质相同，故放在一起总结。</li>
 </ul>
-<p>###问题一</p>
-<ol>
+<h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><ol>
 <li>打开设置中的Keychain Access（钥匙串），搜索<code>github.com</code>并删除userA有关信息。</li>
 <li>使用<code>ssh-keygen -t rsa -C &quot;xxxx&quot; -f ~/.ssh/xxxx_rsa</code>创建密钥后，将公钥上传至github。</li>
 <li>使用<code>ssh -T git@github.com</code>测试是否成功，得到<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>: Permission denied (publickey)。</li>
@@ -545,7 +543,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#报错"><span class="toc-number">1.</span> <span class="toc-text">报错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题一"><span class="toc-number">1.0.1.</span> <span class="toc-text">问题一</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

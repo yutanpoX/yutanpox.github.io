@@ -359,9 +359,8 @@ height:50vh;
                 <span>informix安装踩坑</span>
         </a>
         <div class="abstract-content">
-            ###报错使用命令进行逻辑日志空间调整时$ onspaces -c -d logdbs -p /informix/dbs/logdbs -o 4 -s 32768000
-shared memory not initialized for xxxx
-###解决思路搜索到的解决方案一般是考虑informixserver配置错误，故检查环境变量是否正确，并检查sqlhost及/etc/hosts.一般来说这些配错了，在oninit -ivy进行数据库初始化时，就会报错，所以我将这些都检查过后，发现配置的并没有问题。同时检查onmode -m，数据库状态正常。将安装步骤重新检查后，发现是最...
+            报错使用命令进行逻辑日志空间调整时$ onspaces -c -d logdbs -p /informix/dbs/logdbs -o 4 -s 32768000shared memory not initialized for xxxx
+解决思路搜索到的解决方案一般是考虑informixserver配置错误，故检查环境变量是否正确，并检查sqlhost及/etc/hosts.一般来说这些配错了，在oninit -ivy进行数据库初始化时，就会报错，所以我将这些都检查过后，发现配置的并没有问题。同时检查onmode -m，数据库状态正常。将安装步骤重新检查后，发现是最开始设置挂载文...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -384,15 +383,13 @@ shared memory not initialized for xxxx
                 <span>踩到的关于SSH的坑</span>
         </a>
         <div class="abstract-content">
-            #报错
-
+            报错
 在使用userB对项目进行push时，得到报错ERROR: Permission to XXX.git denied to userA.
 ssh到腾讯云时，得到报错Permission denied (publickey,gssapi-keyex,gssapi-with-mic).两个问题的本质相同，故放在一起总结。
 
-###问题一
-
+问题一
 打开设置中的Keychain Access（钥匙串），搜索github.com并删除userA有关信息。
-使用ssh-keygen -t rsa -C &quot;xxxx&quot; -f ~/.ssh/xxxx_rsa创建密钥后，将公钥上传至...
+使用ssh-keygen -t rsa -C &quot;xxxx&quot; -f ~/.ssh/xxxx_rsa创建密钥后，将公钥上传至github...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
