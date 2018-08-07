@@ -354,6 +354,31 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/08/07/informix安装踩坑/" >
+            
+                <span>informix安装踩坑</span>
+        </a>
+        <div class="abstract-content">
+            ###报错使用命令进行逻辑日志空间调整时$ onspaces -c -d logdbs -p /informix/dbs/logdbs -o 4 -s 32768000
+shared memory not initialized for xxxx
+###解决思路搜索到的解决方案一般是考虑informixserver配置错误，故检查环境变量是否正确，并检查sqlhost及/etc/hosts.一般来说这些配错了，在oninit -ivy进行数据库初始化时，就会报错，所以我将这些都检查过后，发现配置的并没有问题。同时检查onmode -m，数据库状态正常。将安装步骤重新检查后，发现是最...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/07</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/07/31/踩到的关于ssh的坑/" >
             
                 <span>踩到的关于SSH的坑</span>
@@ -597,9 +622,18 @@ Use Guard Clauses for all the special cases123456789101112 double getPayAmount()
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 2
+        Total : 3
         </div>
         <!-- search  -->
         
@@ -612,6 +646,11 @@ Use Guard Clauses for all the special cases123456789101112 double getPayAmount()
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span><a class="archive-post-title" href= "/2018/08/07/informix安装踩坑/" >informix安装踩坑</a>
+        </li>
     
     
         <li class="archive-post-item">
