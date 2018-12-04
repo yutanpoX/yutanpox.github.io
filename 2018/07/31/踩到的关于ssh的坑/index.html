@@ -267,7 +267,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">253</span> / Reading time: <span class="post-count">1 min</span></span>
+                        <span>Word count: <span class="post-count">300</span> / Reading time: <span class="post-count">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -396,19 +396,20 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h1><ul>
+        <h3 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h3><ul>
 <li>在使用userB对项目进行push时，得到报错ERROR: Permission to XXX.git denied to userA.</li>
 <li>ssh到腾讯云时，得到报错Permission denied (publickey,gssapi-keyex,gssapi-with-mic).<br>两个问题的本质相同，故放在一起总结。</li>
 </ul>
-<h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><ol>
+<p>###解决</p>
+<ol>
 <li>打开设置中的Keychain Access（钥匙串），搜索<code>github.com</code>并删除userA有关信息。</li>
 <li>使用<code>ssh-keygen -t rsa -C &quot;xxxx&quot; -f ~/.ssh/xxxx_rsa</code>创建密钥后，将公钥上传至github。</li>
 <li>使用<code>ssh -T git@github.com</code>测试是否成功，得到<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>: Permission denied (publickey)。</li>
 <li>查询后基本都是说未将公钥上传至github，查询到官方文档，提到了使用<code>ssh -vT git@github.com</code>进行追踪，得到报错<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_rsa</span><br><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_dsa</span><br><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_ecdsa</span><br><span class="line">debug1: Trying private key: /Users/xxx/.ssh/id_ed25519</span><br><span class="line">debug1: No more authentication methods to try.</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>原因是使用了自定义名称，需要ssh-add xxxx_rsa。<br>再试一次<code>ssh -vT git@github.com</code>，成功。</p>
-<p>###问题二<br>问题一，缺少ssh-add。</p>
+<p>原因是使用了自定义名称，需要<code>ssh-add xxxx_rsa</code>。<br>再试一次<code>ssh -vT git@github.com</code>，成功。</p>
+<p>每次重启后都需要重新进行ssh-add,原因是其作用只是将密钥添加进ssh-agent管理是session中，一劳永逸的方案应该是在ssh-add时增加参数-K,如<code>ssh-add -K xxxx_rsa</code></p>
 
     </article>
     <!-- license  -->
@@ -416,8 +417,6 @@ height:50vh;
         <div class="license-wrapper">
             <p>原文作者: <a href="http://yutanpo72.github.io">Yutanpo</a>
             <p>原文链接: <a href="http://yutanpo72.github.io/2018/07/31/踩到的关于ssh的坑/">http://yutanpo72.github.io/2018/07/31/踩到的关于ssh的坑/</a>
-            <p>发表日期: <a href="http://yutanpo72.github.io/2018/07/31/踩到的关于ssh的坑/">July 31st 2018, 9:16:22 pm</a>
-            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
@@ -543,7 +542,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#报错"><span class="toc-number">1.</span> <span class="toc-text">报错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题一"><span class="toc-number">1.0.1.</span> <span class="toc-text">问题一</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#报错"><span class="toc-number">1.</span> <span class="toc-text">报错</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
