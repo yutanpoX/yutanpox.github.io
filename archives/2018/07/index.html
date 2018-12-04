@@ -348,10 +348,9 @@
 在使用userB对项目进行push时，得到报错ERROR: Permission to XXX.git denied to userA.
 ssh到腾讯云时，得到报错Permission denied (publickey,gssapi-keyex,gssapi-with-mic).两个问题的本质相同，故放在一起总结。
 
-###解决
-
+解决
 打开设置中的Keychain Access（钥匙串），搜索github.com并删除userA有关信息。
-使用ssh-keygen -t rsa -C &quot;xxxx&quot; -f ~/.ssh/xxxx_rsa创建密钥后，将公钥上传至git...
+使用ssh-keygen -t rsa -C &quot;xxxx&quot; -f ~/.ssh/xxxx_rsa创建密钥后，将公钥上传至github。...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
